@@ -8,41 +8,33 @@
 
 <!-- 
 参考
-https://zenn.dev/aknecco/articles/05b2c38724f66d
-
+https://ysko909.github.io/posts/make-ar-with-a-frame-and-gltf/
 
  -->
 
 
 
 <!DOCTYPE html>
-<html lang="ja">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- A-Frame を読み込む -->
-    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
-    <!-- AR.js を読み込む -->
-    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
-    <title>AR.jsで3D表示</title>
-  </head>
-  <body style="margin: 0; overflow: hidden">
-    <a-scene embedded arjs vr-mode-ui="enabled: false;">
-	    
-      <!-- 3DCGモデルを読み込む -->
-      <a-assets>
-        <a-asset-item id="tiger" src="./cube_medium.glb"></a-asset-item>
-      </a-assets>
+<html>
 
-      <!-- マーカーの.pattファイルを読み込む -->
-      <a-marker type="pattern" url="./pattern-marker.patt">
-        <!-- 3Dモデルを呼び出す -->
-        <a-entity gltf-model="#tiger"></a-entity>
-      </a-marker>
+<head>
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <script src="https://jeromeetienne.github.io/AR.js/aframe/build/aframe-ar.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
+</head>
 
-      <!-- カメラを追加 -->
-      <a-entity camera></a-entity>
+<body>
+    <a-scene embedded arjs="debugUIEnabled:false;" renderer="gammaOutput: true;" vr-mode-ui="enabled: false">
+        <a-assets>
+            <a-asset-item id="model" src="cube_medium.glb"></a-asset-item>
+        </a-assets>
+
+        <a-entity scale="100 100 100" position="0 0.4 -3" animation-mixer="clip:*" gltf-model="#model" visible="true">
+        </a-entity>
+
+        <a-light type="ambient" color="#ffffff"></a-light>
+        <a-light type="point" intensity="2" position="0 4 0"></a-light>
     </a-scene>
-  </body>
+</body>
+
 </html>
